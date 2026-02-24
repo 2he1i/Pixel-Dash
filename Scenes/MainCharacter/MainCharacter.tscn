@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rbk625u8aw0b"]
 
 [ext_resource type="Texture2D" uid="uid://x7o2uer48gn4" path="res://Assets/MainCharacters/Ninja Frog/Hit (32x32).png" id="1_0u6d6"]
+[ext_resource type="Script" uid="uid://cwa1ppy7db7bv" path="res://Scenes/MainCharacter/MainCharacter.cs" id="1_4t4o5"]
 [ext_resource type="Texture2D" uid="uid://biahlwc4gnaqv" path="res://Assets/MainCharacters/Ninja Frog/Double Jump (32x32).png" id="1_dwyah"]
 [ext_resource type="Texture2D" uid="uid://tk4qmqrype41" path="res://Assets/MainCharacters/Ninja Frog/Run (32x32).png" id="1_t86mx"]
 [ext_resource type="Texture2D" uid="uid://ge516mi6fn5s" path="res://Assets/MainCharacters/Ninja Frog/Fall (32x32).png" id="2_4t4o5"]
@@ -310,14 +311,22 @@ animations = [{
 height = 24.0
 
 [node name="MainCharacter" type="CharacterBody2D" unique_id=667541241]
+script = ExtResource("1_4t4o5")
+_jumpForce = -200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=172055693]
-position = Vector2(0, -13)
+position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_7w8xa")
-animation = &"DoubleJump"
-frame = 5
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=863409453]
 position = Vector2(1, -12)
 shape = SubResource("CapsuleShape2D_t86mx")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=374084368]
+position = Vector2(91, 0)
+limit_bottom = 270
+limit_smoothed = true
+
+[node name="GameStartTimer" type="Timer" parent="." unique_id=766094248]
+one_shot = true

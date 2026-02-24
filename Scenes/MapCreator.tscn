@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://daqlipacgnigr"]
+
+[ext_resource type="Script" uid="uid://cb62s2bet30jh" path="res://Scripts/MapCreator.cs" id="1_16em5"]
+
+[node name="MapCreator" type="Node2D" unique_id=329077157]
+script = ExtResource("1_16em5")
