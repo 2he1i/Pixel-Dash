@@ -51,7 +51,7 @@ public partial class MainCharacter : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print(Velocity);
+        // GD.Print(Velocity);
 
         // 重力
         if (!IsOnFloor())
