@@ -323,10 +323,11 @@ position = Vector2(1, -12)
 shape = SubResource("CapsuleShape2D_t86mx")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=374084368]
-position = Vector2(91, 0)
+position = Vector2(100, 0)
 limit_left = 0
 limit_bottom = 270
 limit_smoothed = true
+position_smoothing_enabled = true
 
 [node name="GameStartTimer" type="Timer" parent="." unique_id=766094248]
 one_shot = true

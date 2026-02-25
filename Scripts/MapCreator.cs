@@ -49,8 +49,8 @@ public partial class MapCreator : Node2D
         string[] files = DirAccess.GetFilesAt("res://Scenes/Chunks/");
 
         _chunks = files
-            .Where(f => f.EndsWith("tscn") || f.EndsWith("scn"))
-            .Select(f => $"res://Scenes/Chunks/{f}")
+            .Where(f => f.EndsWith(".tscn") || f.EndsWith(".remap"))
+            .Select(f => $"res://Scenes/Chunks/{f.Replace(".remap", "")}")
             .ToArray();
 
         _chunksNum = _chunks.Length;

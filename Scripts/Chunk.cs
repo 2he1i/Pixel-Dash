@@ -11,7 +11,7 @@ public partial class Chunk : Node2D
     private Area2D _boundary;
     private TileMapLayer _layer;
 
-    private float _speed = 200.0f;
+    private float _speed = 400.0f;
 
     [Signal]
     public delegate void PlayerPassEventHandler();

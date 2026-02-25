@@ -13,9 +13,9 @@ public partial class MainCharacter : CharacterBody2D
         Fall
     }
 
-    private const float Gravity = 20.0f;
+    private const float Gravity = 1200.0f;
     private const float FallGravityScale = 1.8f;
-    private const float JumpForce = -450.0f;
+    private const float JumpForce = -360.0f;
 
     private float _speed = 200.0f;
 
@@ -63,11 +63,11 @@ public partial class MainCharacter : CharacterBody2D
         {
             if (_state == State.Fall)
             {
-                Velocity = new Vector2(Velocity.X, Velocity.Y + Gravity * FallGravityScale);
+                Velocity = new Vector2(Velocity.X, Velocity.Y + Gravity * FallGravityScale * (float)delta);
             }
             else
             {
-                Velocity = new Vector2(Velocity.X, Velocity.Y + Gravity);
+                Velocity = new Vector2(Velocity.X, Velocity.Y + Gravity * (float)delta);
             }
         }
 
