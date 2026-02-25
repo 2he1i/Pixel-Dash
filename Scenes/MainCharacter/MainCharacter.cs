@@ -61,14 +61,10 @@ public partial class MainCharacter : CharacterBody2D
         // 重力
         if (!IsOnFloor())
         {
-            if (_state == State.Fall)
-            {
-                Velocity = new Vector2(Velocity.X, Velocity.Y + Gravity * FallGravityScale * (float)delta);
-            }
-            else
-            {
-                Velocity = new Vector2(Velocity.X, Velocity.Y + Gravity * (float)delta);
-            }
+            // 如果在下落乘以重力缩放系数
+            Velocity = new Vector2(
+                Velocity.X,
+                Velocity.Y + Gravity * (_state == State.Fall ? FallGravityScale : 1) * (float)delta);
         }
 
         // 自动奔跑
