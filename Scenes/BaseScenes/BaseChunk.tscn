@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://2np0abikdbqi"]
+
+[ext_resource type="Script" uid="uid://6jehluqdvrcl" path="res://Scripts/Chunk.cs" id="1_mjyuy"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2cdbo"]
+a = Vector2(0, -270)
+b = Vector2(0, 270)
+
+[node name="BaseChunk" type="Node2D" unique_id=1980926648]
+script = ExtResource("1_mjyuy")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2075574158]
+
+[node name="Boundary" type="Area2D" parent="." unique_id=1663961060]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary" unique_id=1901990769]
+shape = SubResource("SegmentShape2D_2cdbo")

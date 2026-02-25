@@ -4,7 +4,7 @@ namespace PixelDash.Scenes.MainCharacter;
 
 public partial class MainCharacter : CharacterBody2D
 {
-    private enum State
+    public enum State
     {
         Idle,
         Run,
@@ -20,6 +20,11 @@ public partial class MainCharacter : CharacterBody2D
     private float _speed = 200.0f;
 
     private State _state;
+
+    public State GetState()
+    {
+        return _state;
+    }
 
     private AnimatedSprite2D _anim;
     private Timer _gameStartTimer;
@@ -67,10 +72,10 @@ public partial class MainCharacter : CharacterBody2D
         }
 
         // 自动奔跑
-        if (_state != State.Idle)
-        {
-            Velocity = new Vector2(_speed, Velocity.Y);
-        }
+        // if (_state != State.Idle)
+        // {
+        //     Velocity = new Vector2(_speed, Velocity.Y);
+        // }
 
         // 跳跃逻辑
         if (_state == State.Jump)
@@ -112,6 +117,7 @@ public partial class MainCharacter : CharacterBody2D
         }
     }
 
+    // 游戏开始计时
     private void OnTimeout()
     {
         ChangeState(State.Run);

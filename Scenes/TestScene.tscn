@@ -1,19 +1,28 @@
 [gd_scene format=3 uid="uid://bvtq0tjgnkqtd"]
 
 [ext_resource type="PackedScene" uid="uid://rbk625u8aw0b" path="res://Scenes/MainCharacter/MainCharacter.tscn" id="1_b5ayd"]
-[ext_resource type="PackedScene" uid="uid://dkumt5tu7imq3" path="res://Scenes/Chunks/Chunk0.tscn" id="2_5lt6y"]
-[ext_resource type="PackedScene" uid="uid://ubo5nx0o6p71" path="res://Scenes/Chunks/Chunk1.tscn" id="3_8k7wh"]
+[ext_resource type="FontFile" uid="uid://b3f8l26kdrd1y" path="res://Assets/Fonts/fusion-pixel-12px-proportional-zh_hans.ttf" id="3_8k7wh"]
 [ext_resource type="PackedScene" uid="uid://daqlipacgnigr" path="res://Scenes/MapCreator.tscn" id="4_iufkg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8k7wh"]
+font = ExtResource("3_8k7wh")
+font_size = 12
+font_color = Color(0, 1, 0, 1)
 
 [node name="TestScene" type="Node2D" unique_id=1606119137]
 
 [node name="MainCharacter" parent="." unique_id=667541241 instance=ExtResource("1_b5ayd")]
 position = Vector2(73, 62)
 
-[node name="Chunk0" parent="." unique_id=606734195 instance=ExtResource("2_5lt6y")]
-
-[node name="Chunk1" parent="." unique_id=1063646862 instance=ExtResource("3_8k7wh")]
-position = Vector2(960, 0)
-
-[node name="MapCreator" parent="." unique_id=329077157 node_paths=PackedStringArray("_player") instance=ExtResource("4_iufkg")]
+[node name="MapCreator" parent="." unique_id=329077157 node_paths=PackedStringArray("_player", "_debug") instance=ExtResource("4_iufkg")]
 _player = NodePath("../MainCharacter")
+_debug = NodePath("../CanvasLayer/DebugLabel")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1650969193]
+
+[node name="DebugLabel" type="Label" parent="CanvasLayer" unique_id=2083185045]
+offset_right = 480.0
+offset_bottom = 23.0
+text = "FPS"
+label_settings = SubResource("LabelSettings_8k7wh")
+text_overrun_behavior = 1

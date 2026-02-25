@@ -312,12 +312,11 @@ height = 24.0
 
 [node name="MainCharacter" type="CharacterBody2D" unique_id=667541241]
 script = ExtResource("1_4t4o5")
-_jumpForce = -200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=172055693]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_7w8xa")
-animation = &"Idle"
+animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=863409453]
 position = Vector2(1, -12)
@@ -325,6 +324,7 @@ shape = SubResource("CapsuleShape2D_t86mx")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=374084368]
 position = Vector2(91, 0)
+limit_left = 0
 limit_bottom = 270
 limit_smoothed = true
 
