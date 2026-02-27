@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Nito.Collections;
 using PixelDash.Scenes.MainCharacter;
 
 namespace PixelDash.Scripts;
@@ -26,7 +27,7 @@ public partial class MapCreator : Node2D
 
     // 当前被实例化的地图
     private Chunk _currentMap;
-    private readonly List<Chunk> _chunksAhead = new();
+    private readonly Deque<Chunk> _chunksAhead = new();
     private readonly List<Chunk> _chunksBehind = new();
 
     public override void _Ready()
@@ -68,7 +69,7 @@ public partial class MapCreator : Node2D
         AddChild(_currentMap);
 
         // 前方第一个chunk
-        _chunksAhead.Add(GD.Load<PackedScene>(_chunks[Random.Shared.Next(_chunksNum)]).Instantiate<Chunk>());
+        _chunksAhead.AddToBack(GD.Load<PackedScene>(_chunks[Random.Shared.Next(_chunksNum)]).Instantiate<Chunk>());
         _chunksAhead[^1].Position = new Vector2(_currentMap.Position.X + _currentMap.NextChunkRelX, 0);
         _chunksAhead[^1].Player = _player;
 
@@ -78,7 +79,7 @@ public partial class MapCreator : Node2D
         for (var i = 0; i < AheadLimit - 1; i++)
         {
             int index = Random.Shared.Next(_chunksNum);
-            _chunksAhead.Add(GD.Load<PackedScene>(_chunks[index]).Instantiate<Chunk>());
+            _chunksAhead.AddToBack(GD.Load<PackedScene>(_chunks[index]).Instantiate<Chunk>());
             _chunksAhead[^1].Position = new Vector2(_chunksAhead[^2].Position.X + _chunksAhead[^2].NextChunkRelX, 0);
             _chunksAhead[^1].Player = _player;
 
@@ -102,13 +103,13 @@ public partial class MapCreator : Node2D
 
         // 当前map指向新的chunk
         _currentMap = _chunksAhead[0];
-        _chunksAhead.RemoveAt(0);
+        _chunksAhead.RemoveFromFront();
 
         // 订阅玩家通过信号
         _currentMap.PlayerPass += UpdateMap;
 
         // 添加新的chunk到map
-        _chunksAhead.Add(GD.Load<PackedScene>(_chunks[Random.Shared.Next(_chunksNum)]).Instantiate<Chunk>());
+        _chunksAhead.AddToBack(GD.Load<PackedScene>(_chunks[Random.Shared.Next(_chunksNum)]).Instantiate<Chunk>());
         _chunksAhead[^1].Position = new Vector2(_chunksAhead[^2].Position.X + _chunksAhead[^2].NextChunkRelX, 0);
         _chunksAhead[^1].Player = _player;
 
